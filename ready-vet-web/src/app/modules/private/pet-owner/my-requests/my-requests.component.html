@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row mx-3 mt-3">
+    <div class="background-metal flex-1 min-height-70 d-flex align-items-center justify-content-center border-metal">
+    <div class="row align-items-center">
+        <div class="white-title">Moji zahtevi</div>
+    </div>
+    </div>
+  </div>
+  <div class="row d-flex flex-column mx-3 border-metal justify-content-center align-items-center">
+    <div class="row">
+        <div class="bg-metal">
+        </div>
+    </div>
+    <div class="row table-responsive mt-4">
+      <table class="table table-striped m-4">
+        <tbody>
+          <tr *ngFor="let request of requests; let i=index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ request?._service?.title }}</td>
+            <td>{{ getStatus(request?.status) }}</td>
+            <td>{{ getDate(request?.date) }}</td>
+            <td>{{ request?._animal?.animalType || 'Nema kartona' }}</td>
+            <td>{{ request?._animal?.animalBreed || 'Nema kartona' }}</td>
+            <td>{{ request?._veterinarian?.name }} {{ request?._veterinarian?.surname }}</td>
+            <td>
+              <button class="btn normal-btn" (click)="rejectRequest(request)">
+                <fa-icon
+                  class="text-secondary"
+                  [icon]="faTrash"
+                ></fa-icon>
+              </button>
+            </td>
+            <td>
+              <button
+              *ngIf="checkStatus(request?.status)"
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="approveRequest(request)"
+              >Odobri zahtev</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

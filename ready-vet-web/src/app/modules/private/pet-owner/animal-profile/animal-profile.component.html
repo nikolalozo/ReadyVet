@@ -1,0 +1,161 @@
+<div class="container-fluid">
+  <div class="row justify-content-center mt-2">
+    <div class="metal w-25 row justify-content-center">
+    </div>
+  </div>
+  <div class="background-img row justify-content-center">
+    <div class="col-md-11 com-sm-6 ">
+      <div class="row justify-content-center">
+        <div class="bg-metal">
+        </div>
+      </div>
+      <div class="opacity mb-5">
+        <div class="row pt-5 align-items-center justify-content-center text-primary">
+          <div class="row align-items-center justify-content-center text-primary">
+            <div class="row align-items-center">
+              <button class="btn btn-primary btn-lg" *ngIf="isVet && disabledButton" (click)="createNewExamination()">Dodaj
+                pregled</button>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center text-primary">
+              <div class="row justify-content-space-around">
+                <label for="animalType">Tip životinje</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ getAnimalType(animal?.animalType) }}
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              <div class="row justify-content-space-around">
+                <label for="animalBreed">Rasa</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ animal?.animalBreed }}
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              <label for="gender">Pol</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ getAnimalGender(animal?.gender) }}
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              <label for="age">Godine</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ animal?.age }}
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              <label for="weight">Težina</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ animal?.weight }}
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              <label for="sicknesses">Bolesti</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ animal?.sicknesses || 'Nema' }}
+            </div>
+          </div>
+        </div>
+        <div class="row py-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              <label for="sicknesses">Karton kreiran</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center name align-items-center">
+              {{ getDate(animal?.createdAt) }}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row pt-5 align-items-center justify-content-center" *ngIf="medicalRecords && medicalRecords[0]">
+            <div class="row align-items-center justify-content-center">
+              <div class="row align-items-center">
+                <span class="imeLjubimca">Istorija lečenja ({{ totalMedicalRecord }})</span>
+              </div>
+            </div>
+          </div>
+          <div class="row m-4 justify-content-center align-items-center" *ngIf="medicalRecords && medicalRecords[0]; else elseBlock">
+            <div class="table-responsive d-flex justify-content-center">
+              <table class="table table-striped p-2">
+                <thead>
+                <tr class="flex-1">
+                  <th scope="col">#</th>
+                  <th scope="col">Datum</th>
+                  <th scope="col">Usluga</th>
+                  <th scope="col">Veterinar</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody class="flex-1">
+                  <tr *ngFor="let medical of medicalRecords; let i=index;">
+                    <th scope="row">{{ calculate(i+1) }}</th>
+                    <td>{{ getDate(medical?.date) }}</td>
+                    <td>{{ medical?._service?.title }}</td>
+                    <td>{{ medical?._veterinarian?.name }} {{ medical?._veterinarian?.surname }}</td>
+                    <td>
+                      <button type="button" class="btn btn-primary" (click)="openModalForMoreDetails(medical)">
+                        Detaljnije
+                      </button>
+                    </td>
+                    <td>
+                      <button *ngIf="canPutFeedback(medical?.date, medical?._id) && isPetOwner" class="btn btn-primary"
+                      (click)="openModal(medical?._id)">Dodaj utisak</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <ng-template #elseBlock>
+            <div class="row pt-5 justify-content-center align-items-center font-size-22">
+              <div class="row justify-content-center align-items-center width-60p">
+                <label>Karton je prazan</label>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

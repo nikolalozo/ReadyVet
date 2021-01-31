@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row m-3">
+    <div class="col-sm-6 border-secondary">
+      <div class="row">
+        <div class="bg-primary flex-1 min-height-70 d-flex align-items-center justify-content-center">
+          <div class="row ml-5 align-items-center">
+            <div class="white-title">Moj raspored</div>
+            <fa-icon class="text-secondary ml-2 fa-2x" [icon]="faClipboardList"></fa-icon>
+          </div>
+        </div>
+      </div>
+      <div class="row m-4 ml-0 align-items-center justify-content-center">
+        <bs-datepicker-inline
+          [bsConfig]="bsConfig"
+          [bsValue]="date"
+          (bsValueChange)="onValueChange($event)"
+        ></bs-datepicker-inline>
+        <div class="col-6 m-3">
+          <div class="row ml-small-5 align-items-center justify-content-center">
+            <table class="table table-bordered text-center mt-small-5">
+              <thead>
+                <tr>
+                  <th colspan="3" class="white-title"> {{ getDateForCalendar(date) }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr scope="row" *ngFor="let available of availableHours">
+                  <td class="text-secondary font-20">{{ available }}:00</td>
+                  <td class="text-primary font-20">{{ getServiceTitle(available) }}</td>
+                  <td class="text-secondary">
+                    <div class="d-flex flex-column">
+                      <span>{{ getPetOwner(available) }}</span>
+                      <span class="text-primary">{{ getAnimal(available) }} </span>
+                    </div>        
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row justify-content-center align-items-center">
+        <div class="row w-75">
+          <div class="flex-1 min-height-70 d-flex align-items-center justify-content-center border-metal">
+            <div class="row align-items-center">
+                <div class="text-primary title">Danasnji pregledi</div>
+            </div>
+          </div>
+        </div>
+        <div class="row w-75 align-items-center justify-content-center border-metal">
+          <div class="row table-responsive mt-4">
+            <table class="table table-striped my-4">
+              <tbody>
+                <tr *ngFor="let request of todayMedicalRequests">
+                  <td class="text-bold">{{ request?._medicalRecord?._service?.title }}</td>
+                  <td>{{ getDate(request?.date) }}</td>
+                  <td>{{ request?._medicalRecord?._animal?.animalType || 'Zivotinja nema karton' }}</td>
+                  <td *ngIf="request?._medicalRecord?._animal?._id; else noRecord" >
+                    <button class="btn btn-primary" *ngIf="checkStatus(request?._medicalRecord.status)" (click)="goToAnimalProfile(request?._medicalRecord?._id, request?._medicalRecord?._animal?._id)">
+                      Unesi u karton
+                    </button>
+                  </td>
+                  <ng-template #noRecord>
+                    <td>
+                      <button class="btn btn-primary" (click)="createNewAnimal(request?._medicalRecord?._id)">
+                        Napravi karton
+                      </button>
+                    </td>
+                  </ng-template>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

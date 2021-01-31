@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="row vh-90">
+    <div class="col-12 col-md-6 col-lg-4 auth-bg-image d-flex flex-column justify-content-start align-items-stretch p-0">
+      <div class="d-flex justify-content-center align-items-center flex-fill">
+        <img class="logo m-3" src="../../../../../assets/images/readyVetT.png" alt="ready-vet-logo">
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-8">
+      <div class="row justify-content-center mt-2">
+        <a class="nav-link text-uppercase border-right" [routerLink]="['/vet/login']">Prijava</a>
+        <a class="nav-link text-uppercase active-page" [routerLink]="['/vet/register']">Registracija</a>
+      </div>
+      <div class="row d-flex flex-column pb-15 justify-content-center h-90 align-items-center">
+        <div class="naslov text-primary">
+          <label>Dobrodošli</label>
+        </div>
+        <div class="odabir">
+          <label class="text-secondary">Registrujte se kao:</label>
+        </div>
+        <div class="row justify-content-center align-items-center w-50">
+          <ng-select [items]="users" [(ngModel)]="data.role"
+            [ngStyle]="{'display':'block', 'text-align': 'center', 'width':'50%'}" [hideSelected]="true"
+            [multiple]="false" [clearable]=false [virtualScroll]=true (focus)=true required bindLabel="title"
+            bindValue="_id" placeholder="Korisnik" name="selected_service" #selected_service="ngModel">
+          </ng-select>
+        </div>
+        <form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off" class="w-50 mt-3">
+          <div class="form-group">
+            <div class="form-group">
+              <div class="form-group">
+                <label class="text-secondary" for="name">Ime</label>
+                <span class="text-danger ml-1">*</span>
+                <input
+                  name="name"
+                  class="form-control form-control-lg"
+                  type="text"
+                  [(ngModel)]="data.name"
+                  placeholder="Ime"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div class="form-group">
+                <label class="text-secondary" for="surname">Prezime</label>
+                <span class="text-danger ml-1">*</span>
+                <input
+                  name="surname"
+                  class="form-control form-control-lg"
+                  type="text"
+                  [(ngModel)]="data.surname"
+                  placeholder="Prezime"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div class="form-group">
+                <label class="text-secondary" for="email">Imejl adresa</label>
+                <span class="text-danger ml-1">*</span>
+                <input
+                  name="email"
+                  class="form-control form-control-lg"
+                  type="email"
+                  [(ngModel)]="data.email"
+                  placeholder="example@mail.com"
+                  email
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <label class="text-secondary" for="password">Šifra</label>
+              <span class="text-danger ml-1">*</span>
+              <div class="input-group mb-3">
+                <input
+                  [type]="!showPassword ? 'password' : 'text'"
+                  name="password"
+                  [(ngModel)]="data.password"
+                  id="password"
+                  class="form-control form-control-lg"
+                  placeholder="Sifra"
+                  aria-label="PASSWORD"
+                  autocomplete="off"
+                  required
+                >
+                <div class="input-group-append">
+                  <button class="show-hide-pass" type="button" (click)="toggleShowPassword()">
+                    <fa-icon class="text-secondary" [icon]="faEye" *ngIf="!showPassword"></fa-icon>
+                    <fa-icon class="text-secondary" [icon]="faEyeSlash" *ngIf="showPassword"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <button type="submit" (click)="register()" class="btn btn-primary btn-lg text-light w-50"
+                  [disabled]="!registerForm.form.valid || isRegisterInProgress">
+                  Registrujte se
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

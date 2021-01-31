@@ -1,0 +1,110 @@
+.parallax {
+    min-height: 350px; 
+    background-attachment: fixed;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../../../../assets/images/veterinari.jpg");
+}
+
+.inside-caption {
+    color: #fff;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+ .vetList {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 10% 40px 10%;
+    display: wrap;
+}
+
+.vetProfile {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ACACAC;
+    padding-bottom: 30px;
+}
+
+.pic {
+    max-height: 200px;
+    max-width: 250px;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+    max-width: 600px;
+}
+
+.vetPic {
+    flex-grow: 1;
+}
+
+
+.inside-caption {
+    color: #fff;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+.right {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    max-width: 150px;
+    
+}
+.profileBtn {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+button {
+    width: 150px
+}
+.da {
+    width: 100px;
+}
+.close {
+    width: 60px;
+}
+@media only screen and (max-width: 1000px) {
+    .vetProfile {
+      flex-direction: column;
+    }
+    .middle {
+        margin: 15px 0px 15px 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .right {
+        display: flex;
+        align-items: center;
+        display: block;
+        margin: auto;
+    }
+    .markS {
+        text-align: center;
+    }
+    .stars {
+        text-align: center;
+    }
+    .pic {
+        display:block;
+        margin:auto;
+        max-width: 230px;
+    }
+
+    .profileBtn {
+        margin-bottom: 10px;
+    }
+    
+  }
+
+

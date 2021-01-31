@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
+    <span aria-hidden="true">&lt;</span>
+  </button>
+  <h3 class="modal-title">{{ title }}</h3>
+</div>
+<div class="modal-body">
+  <div class="row border-top align-items-center justify-content-center p-3" *ngFor="let animal of animals">
+    <div class="col-md-6 col-sm-12 justify-content-center align-items-center mx-auto mb-md-0 mb-4">
+      <div class="row justify-content-center align-items-center">{{ getAnimalType(animal.animalType) }}: {{ animal.animalBreed }}</div>
+    </div>
+    <div class="col-md-6 col-sm-12 mb-md-0 mb-4">
+      <div class="row justify-content-end align-items-center mx-auto">
+        <button type="button" class="btn btn-primary btn-sm text-uppercase" (click)="confirm(animal?._id)">Izaberi</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>

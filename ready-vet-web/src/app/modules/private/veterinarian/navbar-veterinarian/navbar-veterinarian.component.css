@@ -1,0 +1,33 @@
+.nav-link {
+  color: #A2A2A2 !important;
+}
+.text-primary {
+  color : #1761A0 !important;  
+}
+.btn-primary {
+  background-color: #1761A0 !important;
+  border: 0 !important;
+}
+.navbar-toggler:focus {
+  outline: 0;
+}
+.navbar-nav > .active {
+  color : #1761A0;  
+}
+.navbar-nav > .active a{
+color : #1761A0; 
+}
+.nav-item > a:hover {
+  color : #1761A0 !important;
+}
+ul li {
+  list-style:none;
+  margin: 10px
+}
+.nav-item a.active {
+  color: #1761A0 !important;
+}
+img {
+  width: 50px;
+  height: 50px;
+}

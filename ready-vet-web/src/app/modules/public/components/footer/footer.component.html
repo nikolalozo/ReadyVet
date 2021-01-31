@@ -1,0 +1,45 @@
+<div class="page-footer font-small unique-color-dark" *ngIf="footerExists">
+  <div class="container text-center text-md-left mt-5 border-top">
+    <div class="row mt-3">
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <h6 class="text-uppercase font-weight-bold">Ready vet</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <img class="logo" alt="" src="../../../../../assets/images/readyVetBT.png"/>
+          </p>
+      </div>
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <h6 class="text-uppercase font-weight-bold">Kontakt</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <fa-icon class="text-sec" [icon]="faMapMarker"></fa-icon>
+          <span>Bulevara Nemanjića 25, Niš</span>
+        </p>
+        <p>
+          <fa-icon class="text-sec" [icon]=" faPhoneAlt"></fa-icon>
+          <span>060006005</span>
+        </p>
+        <p>
+          <fa-icon class="text-sec" [icon]="faMailBulk"></fa-icon>
+          <span>ELFAK.NI.AC.RS</span>
+        </p>
+      </div>
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto">
+        <h6 class="text-uppercase font-weight-bold">Lokacija</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <div class="row justify-content-center mr-xl-4 mr-sm-0 ml-md-3 ml-xl-0">
+        <google-map id="map" height="170px" width="220px" [zoom]="zoom" [center]="center" [options]="options">
+          <map-marker #markerElem [position]="position" (mapClick)="openInfo(markerElem, 1)">
+          </map-marker>
+          <map-info-window>Ready Vet Klinika <br>
+              Bulevar Nemanjića 25
+          </map-info-window>
+      </google-map>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    Pet friends
+  </div>
+</div>

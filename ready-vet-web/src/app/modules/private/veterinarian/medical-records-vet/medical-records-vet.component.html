@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-center mt-3">
+    <div class="col">
+      <div class="row align-items-center justify-content-center">
+        <h1 class="text-primary">Kartoni</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row m-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tip</th>
+          <th scope="col">Rasa</th>
+          <th scope="col">Pol</th>
+          <th scope="col">Godine</th>
+          <th scope="col">Vlasnik</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let animal of animals; let i=index">
+          <th scope="row">{{ i+1 }}</th>
+          <td>{{ animal?.animalType }}</td>
+          <td>{{ animal?.animalBreed  }}</td>
+          <td>{{ animal?.gender }}</td>
+          <td>{{ animal?.age }}</td>
+          <td>{{ animal?._petOwner.name }} {{ animal?._petOwner.surname }}</td>
+          <td>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="goToAnimalProfile(animal?._id)"
+            >Vidi karton
+          </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

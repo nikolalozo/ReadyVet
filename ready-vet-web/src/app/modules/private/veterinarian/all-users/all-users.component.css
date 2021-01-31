@@ -1,0 +1,11 @@
+.marg-10{
+   margin:10px;
+}
+.name{
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 20px
+}
+.table {
+    width: 90%;
+}

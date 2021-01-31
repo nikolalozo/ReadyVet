@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ title }}</h3>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>{{ message }}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn {{ confirmColor }}" (click)="confirm()">{{ confirmBtnName }}</button>
+  <button type="button" class="btn {{ closeColor }}" (click)="decline()">{{ closeBtnName }}</button>
+</div>
+

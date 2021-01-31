@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <div class="row">
+    <div id="slides" class="carousel slide" data-ride="carousel">
+      <ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+        <li data-target="#slides" data-slide-to="2"></li>
+      </ul>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" style="height:450px" src="../../../../../assets/images/zdravstveni-karton.jpg" alt="First slide">
+           <div class="carousel-caption">
+            <h3 class="text-primary">Rezervišite pregled bez odlaska veterinaru</h3>
+            <div *ngIf="isPetOwner; else elseBlock">
+              <button 
+                  class="btn btn-primary"
+                  (click)="newRecord()"
+              >
+                  Zakazite pregled
+              </button>
+            </div>
+            <ng-template #elseBlock>
+              <button 
+                  class="btn btn-primary"
+                  (click)="login()"
+              >
+              Prijavite se
+              </button>
+            </ng-template>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" style="height:450px" src="../../../../../assets/images/slide1.jpg" alt="Second slide">
+          <div class="carousel-caption">
+            <h3 class="text-primary">Radimo zajedno sa Vama u cilju zdravlja Vašeg ljubimca</h3>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" style="height:450px" src="../../../../../assets/images/slide2.jpg" alt="Third  slide">
+          <div class="carousel-caption">
+            <h3 class="text-primary">Naš cilj je da pružimo najbolju moguću veterinarsku negu u prijatnom i opuštenom ambijentu</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-30 justify-content-center">
+    <div class="col-3 d-flex align-items-center">
+      <div class="row d-flex flex-column align-items-center">
+        <h1>O Klinici</h1>
+        <p class="text-primary">Najbolji prijatelj vaseg kucnog ljubimca</p>
+        <p>
+        We take the same approach to all three of our hospitals: focus on creating a family-like atmosphere, and settle for nothing less than excellence in every 
+        aspect of medicine. So whether it’s South Park, Southwest Vet, or Dripping Springs… we are excited to serve you, and please know that your pet is in very capable hands.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-8 col-sm-6 d-flex align-items-center">
+      <img class="img-fluid" src="../../../../../assets/images/dogs-cats.png" alt="Dogs-cats">
+    </div>
+  </div>
+  <div class="parallax background-small background-large d-flex align-items-center">
+    <div class="d-flex flex-column flex-lg-row flex-1 w-100 m-4 justify-content-center align-items-center">
+      <div class="d-flex flex-column align-items-center w-30 m-5">
+        <fa-icon class="text-sec fa-5x" [icon]="faNotesMedical"></fa-icon>
+        <span class="inside-caption">1000</span>
+        <span class="inside-caption">IZLECENIH LJUBIMACA</span>
+      </div>
+      <div class="d-flex flex-column align-items-center w-30 m-5">
+        <fa-icon class="text-sec fa-5x" [icon]="faHeartbeat"></fa-icon>
+        <span class="inside-caption">18</span>
+        <span class="inside-caption">OPERACIJA</span>
+      </div>
+      <div class="d-flex flex-column align-items-center w-30 m-5">
+        <fa-icon class="text-sec fa-5x" [icon]="faDog"></fa-icon>
+        <span class="inside-caption">1000</span>
+        <span class="inside-caption">PACIJENATA</span>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex flex-column align-items-center justify-content-center mt-3">
+    <h1 class="text-primary">Sta kazu klijenti</h1>
+    <div class="linear-blue circle d-flex align-items-center justify-content-center mt-2">
+      <fa-icon class="text-light fa-3x" [icon]="faQuoteRight"></fa-icon>
+    </div>
+    <div class="w-100 m-4 height-500px">
+      <div class="overflow-height">
+        <div>
+          <div *ngFor="let feedback of feedbacks">
+            <div *ngIf="feedback?.comment">
+              <app-comments
+                comment="{{feedback?.comment}}"
+                mark="{{feedback?.mark}}"
+                name="{{feedback?._medicalRecord?._petOwner?.name}}"
+                surname="{{feedback?._medicalRecord?._petOwner?.surname}}"
+                date="{{feedback?.createdAt}}"
+              >
+              </app-comments>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row parallax background-skin d-flex align-items-center">
+    <div class="d-flex flex-column flex-lg-row flex-1 w-100 m-4 justify-content-center align-items-center w-50 medical-service opacity" *ngFor="let service of medicalServices">
+      <div class="medical-service-title text-primary">
+        <span>{{ service.title }}</span>
+      </div>
+    </div>
+  </div>
+</div>

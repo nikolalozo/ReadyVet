@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-center">
+  <div class="rounded-lg m-4 comment-container sb1 d-flex flex-column align-items-center">
+    <div class="row align-items-center w-100 justify-content-between">
+      <span class="bold">
+        @{{ name }} {{ surname }}
+      </span>
+      <div class="d-flex flex-column ml-2 align-items-start">
+        <span class="date-font">
+          {{ getDate(date) }}
+        </span>
+        <ngb-rating 
+        [(rate)]="mark"
+        [max]="5"
+        [readonly]="true"
+        [starTemplate]="t">
+        </ngb-rating>
+      </div>
+    </div>
+    <p class="mt-3 italic">
+      {{ comment }}
+    </p>
+  </div>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>

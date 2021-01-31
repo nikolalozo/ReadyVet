@@ -1,0 +1,152 @@
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-sm-7 ml-0 m-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#scheduled" role="tab"
+                        aria-controls="home" aria-selected="true">
+                        <span>Rezervisani</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#done" role="tab"
+                        aria-controls="profile" aria-selected="false">
+                        <span>Zavrseni</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#rejected" role="tab"
+                        aria-controls="profile" aria-selected="false">
+                        <span>Odbijeni</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="scheduled" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row mx-3 mt-3">
+                        <div
+                            class="background-metal flex-1 min-height-70 d-flex align-items-center justify-content-center border-metal">
+                            <div class="row mx-auto align-items-center">
+                                <div class="white-title">Rezervisani pregledi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="row d-flex flex-column mx-3 border-metal justify-content-center align-items-center shadow">
+                        <div class="row">
+                            <div class="bg-metal">
+                            </div>
+                        </div>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="row mt-4 w-100 align-items-center justify-content-center mx-auto" *ngFor="let request of reserved">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ request?._service.title }}</h5>
+                                        <p class="card-text">Veterinar: {{request?._veterinarian.name }} {{request?._veterinarian.surname }} <br>
+                                            Kada: {{getDate(request?.date)}} <br>
+                                            Vlasnik: {{getPetOwner(request)}} <br>
+                                            Vrsta: {{getType(request?._animal?.animalType)}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center align-items-center w-100">
+                            <div *ngIf="reserved && reserved[0]" class="pagination">
+                                <pagination *ngIf="totalReserved > where.limit" [boundaryLinks]="true"
+                                    [totalItems]="totalReserved" [itemsPerPage]="where.limit" [maxSize]="7"
+                                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                                </pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="done" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row mx-3 mt-3">
+                            <div
+                                class="background-metal flex-1 min-height-70 d-flex align-items-center justify-content-center border-metal">
+                                <div class="row mx-auto align-items-center">
+                                    <div class="white-title">Završeni pregledi</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="row d-flex flex-column mx-3 border-metal justify-content-center align-items-center shadow">
+                            <div class="row">
+                                <div class="bg-metal">
+                                </div>
+                            </div>
+                            <div class="row align-items-center justify-content-center">
+                                <div class="row mt-4 w-100 align-items-center justify-content-center mx-auto" *ngFor="let request of done">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ request?._service.title }}</h5>
+                                            <p class="card-text">Veterinar: {{request?._veterinarian.name }} {{request?._veterinarian.surname }} <br>
+                                                Odrađen: {{getDate(request?.date)}} <br>
+                                                Vlasnik: {{getPetOwner(request)}} <br>
+                                                Vrsta: {{getType(request?._animal?.animalType)}} <br>
+                                                Rasa: {{getType(request?._animal?.animalBreed)}}<br>
+                                            </p>
+                                            <button type="button" class="btn btn-primary" (click)="openModalForMoreDetails(request)">
+                                                Detaljnije
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center align-items-center w-100">
+                                <div *ngIf="done && done[0]" class="pagination">
+                                    <pagination *ngIf="totalDone > where.limit" [boundaryLinks]="true"
+                                        [totalItems]="totalDone" [itemsPerPage]="where.limit" [maxSize]="7"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                                    </pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="rejected" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row mx-3 mt-3">
+                            <div
+                                class="background-metal flex-1 min-height-70 d-flex align-items-center justify-content-center border-metal">
+                                <div class="row mx-auto align-items-center">
+                                    <div class="white-title">Odbijeni pregledi</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="row d-flex flex-column mx-3 border-metal justify-content-center align-items-center shadow">
+                            <div class="row">
+                                <div class="bg-metal">
+                                </div>
+                            </div>
+                            <div class="row align-items-center justify-content-center">
+                                <div class="row mt-4 w-100 align-items-center justify-content-center mx-auto" *ngFor="let request of rejected">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ request?._service.title }}</h5>
+                                            <p class="card-text">Veterinar: {{request?._veterinarian.name }} {{request?._veterinarian.surname }} <br>
+                                                Trebalo da se obavi: {{getDate(request?.date)}} <br>
+                                                {{ getStatus(request?.status)}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center align-items-center w-100">
+                                <div *ngIf="rejected && rejected[0]" class="pagination">
+                                    <pagination *ngIf="totalRejected > where.limit" [boundaryLinks]="true"
+                                        [totalItems]="totalRejected" [itemsPerPage]="where.limit" [maxSize]="7"
+                                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                                    </pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

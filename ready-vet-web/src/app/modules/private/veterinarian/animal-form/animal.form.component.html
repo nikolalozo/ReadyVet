@@ -1,0 +1,152 @@
+<div class="container-fluid">
+  <div class="row justify-content-center mt-2">
+    <div class="metal w-25">
+    </div>
+  </div>
+  <div class="background-img row justify-content-center">
+    <div class="row opacity w-75 justify-content-center align-items-center d-flex flex-column">
+      <div class="bg-metal">
+      </div>
+      <form class="w-75" #searchPetOwner="ngForm" (ngSubmit)="getPetOwners()" autocomplete="off">
+        <div class="form-group m-5">
+          <div class="row mb-3 justify-content-center align-items-center">
+            <label class="text-primary" for="petOwner">Vlasnik ljubimca</label>
+            <span class="text-danger ml-1">*</span>
+            <input
+            class="form-control w-50"
+            type="text"
+            name="selectedAnimalOwner"
+            value="{{ getPetOwnerName() }}"
+            readonly>
+          </div>
+          <div class="input-group">
+            <input
+              type="text"
+              name="search"
+              [(ngModel)]="where.search"
+              (change)="getPetOwners();"
+              class="form-control"
+              placeholder="Email"
+              aria-label="search"
+              aria-describedby="search-product-extras"
+            >
+            <div class="input-group-append">
+              <button class="btn btn-primary normal-btn" (click)="getPetOwners();">
+                <fa-icon [icon]="faSearch"></fa-icon>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="petOwners && petOwners[0]">
+            <table class="table table-borderless table-light">
+              <tbody>
+                <tr *ngFor="let petOwner of petOwners; let i=index;">
+                  <button class="btn btn-link text-decoration-none w-100" (click)="selectPetOwner(petOwner)">
+                    <th>{{ i+1 }}</th>
+                    <td>{{ petOwner?.name }} {{ petOwner?.surname }}</td>
+                    <td>{{ petOwner?.email }}</td>
+                  </button>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+      <form class="w-50" #createAnimal="ngForm" (ngSubmit)="create()" autocomplete="off">
+        <div class="form-group">
+          <label class="text-primary" for="animalType">Tip životinje</label>
+          <span class="text-danger ml-1">*</span>
+          <ng-select
+            id="animalType"
+            class="w-100"
+            [items]="animalTypes"
+            [(ngModel)]="data.animalType"
+            [multiple]="false"
+            [clearable]="false"
+            [virtualScroll]="true"
+            placeholder="No animal type selected"
+            name="selected_type"
+            required
+          ></ng-select>
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="animalBreed">Rasa</label>
+          <span class="text-danger ml-1">*</span>
+          <input
+          name="animalBreed"
+          class="form-control"
+          type="text"
+          [(ngModel)]="data.animalBreed"
+          placeholder="Rasa zivotinje"
+          required
+          autocomplete="off"
+        />
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="gender">Pol</label>
+          <span class="text-danger ml-1">*</span>
+          <ng-select
+            id="gender"
+            class="w-100"
+            [items]="genders"
+            [(ngModel)]="data.gender"
+            [multiple]="false"
+            [clearable]="false"
+            [virtualScroll]="true"
+            required
+            placeholder="No animal gender selected"
+            name="selected_gender"
+          ></ng-select>
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="age">Godine</label>
+          <input
+            name="age"
+            class="form-control"
+            type="number"
+            [(ngModel)]="data.age"
+            placeholder="Godine"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="weight">Težina[kg]</label>
+          <div class="input-group">
+            <input
+              name="weight"
+              class="form-control"
+              type="number"
+              [(ngModel)]="data.weight"
+              placeholder="Tezina"
+              autocomplete="off"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" [disabled]="true">
+                <span>kg</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="sicknesses">Bolesti</label>
+          <input
+            name="sicknesses"
+            class="form-control"
+            type="text"
+            [(ngModel)]="data.sicknesses"
+            placeholder="Bolesti zivotinje"
+            autocomplete="off"
+          />
+        </div>
+        <div class="m-5">
+          <button
+          type="submit"
+          class="btn btn-lg btn-primary w-100"
+          [disabled]="!createAnimal.form.valid"
+          >
+            Kreiraj
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

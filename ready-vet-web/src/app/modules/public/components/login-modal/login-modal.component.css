@@ -1,0 +1,14 @@
+.modal-header,
+.modal-body {
+  align-items: center;
+  justify-content: center;
+  border: 0px;
+}
+.modal-header h3 {
+  text-align: center;
+  width: 100%;
+}
+.modal-body p {
+  text-align: center;
+  font-size: 1.2rem;
+}

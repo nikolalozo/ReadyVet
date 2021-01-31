@@ -1,0 +1,39 @@
+.parallax {
+  min-height: 350px; 
+  background-attachment: fixed; 
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../../../assets/images/veterinarian-template.jpg");
+}
+
+.inside-caption {
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 769px) {
+  .border-secondary-right {
+    border-right: 1px solid #ACACAC !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .border-secondary-bottom {
+    border-bottom: 1px solid #ACACAC !important;
+  }
+}
+
+.btn-link {
+  color: black !important;
+}
+
+.active {
+  text-decoration: underline;
+}

@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
+    <span aria-hidden="true">&lt;</span>
+  </button>
+  <h3 class="modal-title">{{ title }}</h3>
+</div>
+<div class="modal-body">
+  <form autocomplete="off">
+    <div class="form-group">
+        <div class="label">Ocenite veterinara</div>
+        <ngb-rating
+        [(rate)]="mark"
+        [max]="5"
+        [readonly]="false"
+        [starTemplate]="t">
+        </ngb-rating>
+    </div>
+    <div class="form-group">
+        <label for="vetComment">Napišite komentar</label>
+        <textarea
+        [(ngModel)]="comment"
+        class="form-control"
+        type="text"
+        id="comment"
+        rows="4"
+        maxlength="200"
+        name="comment"
+        placeholder="Utisak"
+        >
+        </textarea>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn {{ confirmColor }}" (click)="confirm()">{{ confirmBtnName }}</button>
+  <button type="button" class="btn {{ closeColor }}" (click)="decline()">{{ closeBtnName }}</button>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+
+

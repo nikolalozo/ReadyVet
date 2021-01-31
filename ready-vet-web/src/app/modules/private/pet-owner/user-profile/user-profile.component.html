@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="row align-items-start justify-content-center">
+        <div class="col-sm-4 border-secondary max-height-200 m-4 mr-0">
+           <div class="row justify-content-center align-items-center mt-2">
+            <h3 class="text-primary">Kontakt informacije</h3>
+           </div>
+           <div class="row mt-3">
+               <div class="col-sm-12 col-md-4">
+                    <span class="text-secondary contact-info">Email</span>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <span class="text-primary contact-info">{{ user?.email }}</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12 col-md-4">
+                    <span class="text-secondary contact-info">Ime</span>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <span class="text-primary contact-info">{{ user?.name }}</span>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-sm-12 col-md-4">
+                    <span class="text-secondary contact-info">Prezime</span>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <span class="text-primary contact-info">{{ user?.surname }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7 ml-0 m-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                        <span>Zivotinje</span>
+                        <fa-icon class="text-secondary ml-1" [icon]="faDog"></fa-icon>
+                    </a>
+                </li>
+                <li *ngIf="!isAdmin" class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                        <span>Zahtevi</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row mx-3 mt-3">
+                        <div class="background-metal flex-1 min-height-70 d-flex align-items-center justify-content-center border-metal">
+                            <div class="white-title">Moje zivotinje ({{ animalsTotal }})</div>
+                        </div>
+                    </div>
+                    <div class="row d-flex flex-column mx-3 border-metal shadow">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="bg-metal">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row mt-4 w-100 align-items-center justify-content-center" *ngFor="let animal of animals">
+                                <div class="card w-50">
+                                    <div class="card-body">
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-xl-8 col pl-5">
+                                                <div class="row">
+                                                    <h5 class="card-title text-lowercase">{{ animal?.animalType }}, {{ animal?.animalBreed }}</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="card-text">Godine: {{ animal?.age || 'Nepoznato' }}</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="card-text">Tezina: {{ animal?.weight || 'Nepoznato'}} kg</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="card-text">Bolesti: {{ animal?.sicknesses || 'Nema'}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col">
+                                                <div class="row">
+                                                    <button type="button" class="btn btn-primary w-75" (click)="goToAnimalProfile(animal._id)">Karton</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center align-items-center w-100">
+                            <div *ngIf="animals && animals[0]" class="pagination">
+                              <pagination *ngIf="animalsTotal > where.limit" [boundaryLinks]="true" [totalItems]="animalsTotal"
+                                [itemsPerPage]="where.limit" [maxSize]="7" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                                lastText="&raquo;" (pageChanged)="getAnimals($event.page)"></pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!isAdmin" class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <app-my-requests></app-my-requests>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

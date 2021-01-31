@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-center mt-3">
+    <div class="col">
+      <div class="row align-items-center justify-content-center">
+        <h1 class="text-primary">Korisnici</h1>
+        <fa-icon class="text-secondary ml-2 fa-3x" [icon]="faUsers"></fa-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="input-group w-75">
+      <input type="text" name="search" [(ngModel)]="where.search" (change)="getUsers();" class="form-control"
+        placeholder="Email" aria-label="search" aria-describedby="search-users-email">
+      <div class="input-group-append">
+        <button class="btn btn-primary normal-btn" (click)="getUsers();">
+          <fa-icon [icon]="faSearch"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row m-4 justify-content-center align-items-center">
+    <div class="table-responsive d-flex justify-content-center">
+      <table class="table table-striped p-2">
+        <thead>
+        <tr class="flex-1">
+          <th scope="col">#</th>
+          <th scope="col">Ime i prezime</th>
+          <th scope="col">Broj ljubimaca</th>
+          <th scope="col">Korisnik od:</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody class="flex-1">
+        <tr *ngFor="let user of users; let i=index;">
+          <th scope="row">{{ calculate(i+1) }}</th>
+          <td>{{user?.name}} {{user?.surname}}</td>
+          <td>{{ user?.numOfPets }}</td>
+          <td>{{getDate(user?.createdAt)}}</td>
+          <td>
+            <button class="btn normal-btn" (click)="openModal(user?._id)">
+              <fa-icon
+                class="text-secondary"
+                [icon]="faTrash"
+              ></fa-icon>
+            </button>
+          </td>
+          <td>
+            <button (click)="goToProfile(user?._id)" class="btn btn-primary">Profil</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center w-100">
+    <div *ngIf="users && users[0]" class="pagination">
+      <pagination *ngIf="totalUsers > where.limit" [boundaryLinks]="true" [totalItems]="totalUsers"
+        [itemsPerPage]="where.limit" [maxSize]="7" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;" (pageChanged)="getUsers($event.page)"></pagination>
+    </div>
+  </div>
+</div>

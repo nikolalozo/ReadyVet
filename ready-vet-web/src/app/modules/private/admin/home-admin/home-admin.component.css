@@ -1,0 +1,18 @@
+.marg-10{
+    margin:10px;
+}   
+.name{
+    font-weight: bold;
+    font-size: 18px
+}
+.table {
+    width: 90%;
+}
+
+.div12345 {
+    display: flex;
+    align-items: center;
+}
+td {
+    align-items: center;
+}

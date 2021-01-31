@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
+    <span aria-hidden="true">&lt;</span>
+  </button>
+  <h3 class="modal-title">{{ title }}</h3>
+</div>
+<div class="modal-body">
+  <div class="row border-top align-items-center justify-content-center p-3" *ngFor="let vet of veterinarians">
+    <div class="col-md-4 col-sm-12 mx-auto mb-md-0 mb-4">
+      <div class="row mx-auto align-items-center">
+        <img src="{{ generateUrl(vet?.image) }}" alt="..." class="avatar-wrapper rounded-circle img-fluid overflow-hidden">
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 justify-content-center align-items-center mx-auto mb-md-0 mb-4">
+      <div class="row justify-content-center align-items-center">{{ vet.name }} {{ vet.surname }}</div>
+      <div class="row justify-content-center align-items-center">
+        <ngb-rating 
+        [(rate)]="vet.averageMark"
+        [max]="5"
+        [readonly]="true"
+        [starTemplate]="t">
+        </ngb-rating>
+      </div>
+      <div class="row justify-content-center align-items-center">{{ vet?.averageMark || '0' | number : '1.2-2' }} / 5</div>
+    </div>
+    <div class="col-md-4 col-sm-12 mb-md-0 mb-4">
+      <div class="row justify-content-end align-items-center mx-auto">
+        <button type="button" class="btn btn-primary btn-sm text-uppercase" (click)="confirm(vet?._id)">Izaberi</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+

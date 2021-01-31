@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="parallax d-flex flex-column align-items-center justify-content-center">
+        <span class="inside-caption">Kontakt</span>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
+            <h1 class="display-4 text-primary font-weight-bold my-5">Ready Vet Klinika</h1>
+            <hr class="light-100 py-xl-3 py-sm-1 w-75">
+        </div>
+    </div>
+    <div class="row mx-5 my-3">
+        <div class="col-xl-4 col-sm-12 justify-content-center border">
+            <div class="row justify-content-center mb-3">
+                <fa-icon class="fa-2x" [icon]="faPhone"></fa-icon>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Telefon:</span>
+                <span class="d-flex flex-column">018/225-883</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Hitni slucajevi:</span>
+                <span class="d-flex flex-column">018/4364-234</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Imejl:</span>
+                <span class="d-flex flex-column">readyvetklinika@gmail.com</span>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-12 border">
+            <div class="row no-gutters justify-content-center mb-3 ">
+                <fa-icon class="fa-2x" [icon]="faClock"></fa-icon>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Ponedeljak:</span>
+                <span class="d-flex flex-column">08:00 - 17:00</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Utorak:</span>
+                <span class="d-flex flex-column">08:00 - 17:00</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Sreda:</span>
+                <span class="d-flex flex-column">08:00 - 17:00</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Cetvrtak:</span>
+                <span class="d-flex flex-column">08:00 - 17:00</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Petak:</span>
+                <span class="d-flex flex-column">08:00 - 17:00</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Subota:</span>
+                <span class="d-flex flex-column">08:00 - 14:00</span>
+            </div>
+            <div class="row justify-content-between no-gutters">
+                <span class="d-flex flex-column flex-grow-1">Nedelja:</span>
+                <span class="d-flex flex-column">Ne radimo</span>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-12 border">
+            <div class="row no-gutters justify-content-center pb-3">
+                <fa-icon class="fa-2x" [icon]="faMapPin"></fa-icon>
+            </div>
+            <div class="row justify-content-center p-3">
+                <google-map id="map" height="210px" width="320px" [zoom]="zoom" [center]="center" [options]="options">
+                    <map-marker #markerElem [position]="position" (mapClick)="openInfo(markerElem, 1)">
+                    </map-marker>
+                    <map-info-window>Ready Vet Klinika <br>
+                        Bulevar Nemanjića 25
+                    </map-info-window>
+                </google-map>
+            </div>
+        </div>
+    </div>
+</div>

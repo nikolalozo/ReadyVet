@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h3 class="modal-title text-primary">{{ title }}</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<div class="modal-body">
+    <div>
+        <div class="row justify-content-center align-items-center border-bottom">
+            <div class="col-sm-3">
+                <label class="text-secondary">Opis</label> 
+            </div>
+            <div class="col-sm-8">
+                <label class="text-primary">{{description}}</label> 
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center border-bottom">
+            <div class="col-sm-3">
+                <label class="text-secondary">Lekovi</label> 
+            </div>
+            <div class="col-sm-8">
+                <label class="text-primary">{{medicines}}</label> 
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center border-bottom">
+            <div class="col-sm-3">
+                <label class="text-secondary">Cena</label> 
+            </div>
+            <div class="col-sm-8">
+                <label class="text-primary">{{price}} din</label> 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn {{ confirmColor }}" (click)="downloadPdf()">{{ confirmBtnName }}</button>
+  </div>
+<div id="content" #content hidden class="row justify-content-center align-items-center">
+    <div class="row justify-content-center">
+        <h1>Pregled</h1>
+    </div>
+    <div class="row">
+        <span>Zivotinja: {{ animalType }} {{ animalBreed }}</span>
+    </div>
+    <div class="row">
+        <span>Veterinar: {{ veterinarian }}</span>
+    </div>
+    <div class="row">
+        <span>Dijagnoza: {{ description }}</span>
+    </div>
+    <div class="row">
+        <span>Lekovi: {{ medicines }}</span>
+    </div>
+    <div class="row">
+        <span>Cena: {{ price }} dinara</span>
+    </div>
+</div>
+
+
+  

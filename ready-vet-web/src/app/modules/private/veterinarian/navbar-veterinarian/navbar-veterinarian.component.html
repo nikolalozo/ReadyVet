@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-fluid logo" [routerLink]="['./home-vet']"><img src="././assets/images/readyVetT.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav mr-auto" *ngIf="!isAdmin; else elseBlock">
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./home-vet']">Početna</a>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./records']">Kartoni</a>
+      </li>
+      <li class="nav-item ml-2 d-flex flex-row">
+        <a class="nav-link text-uppercase" [routerLink]="['./requests']">Zahtevi</a>
+        <fa-icon *ngIf="newNotification" class="text-danger" [icon]="faBell"></fa-icon>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./profile', _id]">Profil</a>
+      </li>
+    </ul>
+    <ng-template #elseBlock>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ml-2">
+          <a class="nav-link text-uppercase" [routerLink]="['./home-vet']">Početna</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link text-uppercase" [routerLink]="['./all-medical-services']">Usluge</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link text-uppercase" [routerLink]="['./team']">Veterinari</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link text-uppercase" [routerLink]="['./all-users']">Korisnici</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link text-uppercase" [routerLink]="['./all-medical-exams']">Pregledi</a>
+        </li>
+      </ul>
+    </ng-template>
+    <span class="navbar-text">
+      <button
+        type="button"
+        class="btn btn-primary ml-2 btn-sm text-uppercase"
+        (click)="logout()"
+      >
+        Odjava
+      </button>
+    </span>
+  </div>
+</nav>

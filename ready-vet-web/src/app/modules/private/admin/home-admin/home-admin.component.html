@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-center mt-3">
+        <div class="col-sm-8">
+            <canvas *ngIf="chartData && chartData[0]" baseChart [chartType]="'line'" [datasets]="chartData"
+                [labels]="chartLabels" [options]="chartOptions" [colors]="colors" [legend]="true">
+            </canvas>
+        </div>
+    </div>
+    <div class="row pt-5 justify-content-center align-items-center">
+        <h1 class="text-primary">Novi zahtevi za registraciju</h1>
+    </div>
+    <div class="row m-4 table-responsive">
+        <table class="table table-striped m-2">
+            <thead>
+                <tr class="flex-1">
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ime i prezime</th>
+                    <th scope="col">Zahtev predat:</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="flex-1">
+                <tr *ngFor="let user of unverifiedVets; let i=index;">
+                    <th scope="row">{{ calculate(i+1) }}</th>
+                    <td>
+                        <div class="div12345">{{ user?.email }}
+                        </div>
+                    </td>
+                    <td>{{ user?.name }} {{ user?.surname }}</td>
+                    <td>{{ getDate(user?.createdAt) }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)="approveRegistration(user?._id)">Odobri
+                            zahtev
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)="rejectRegistration(user?._id)">Ponisti
+                            zahtev
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

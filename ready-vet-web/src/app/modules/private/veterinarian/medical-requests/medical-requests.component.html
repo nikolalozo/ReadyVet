@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <div class="row parallax d-flex align-items-center justify-content-center">
+    <span class="inside-caption text-primary">Zahtevi</span>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-3 col-6 border-secondary-right border-secondary-bottom">
+      <div class="row justify-content-center align-items-center">
+        <span class="text-primary font-size-20">Filteri</span>
+      </div>
+      <div class="row m-4 d-flex flex-column">
+        <div class="row bg-primary align-items-center justify-content-center">
+          <span class="text-light">Tip usluge</span>
+        </div>
+        <div class="row d-flex flex-column">
+          <div *ngFor="let service of services">
+            <button type="button" class="btn btn-link" (click)="getServiceFilter(service?._id)">
+              <span
+              [ngClass]="{
+                'active': service._id === selectedServiceFilter
+              }"
+              >
+                {{ service?.title }}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="row d-flex flex-column mt-5">
+          <div class="row bg-primary align-items-center justify-content-center mx-1">
+            <span class="text-light">Datum pregleda</span>
+          </div>
+          <div *ngFor="let dateFilter of dateFilters; let i=index;">
+            <button type="button" class="btn btn-link" (click)="getDateFilter(i)">
+              <span
+              [ngClass]="{
+                'active': i === selectedDateFilter
+              }"
+              >
+                {{ dateFilter }}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="row m-5">
+          <button
+            type="button"
+            class="btn btn-primary w-100"
+            (click)="filter()"
+            >Filtriraj
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary mt-3 w-100"
+            (click)="clearFilters()"
+            >Ponisti filtere
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-6 ml-3 height-100">
+      <div class="row">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            [(ngModel)]="where.search"
+            (change)="getMedicalRequests()"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="search"
+            aria-describedby="search-product-extras"
+          >
+          <div class="input-group-append">
+            <button class="btn btn-primary normal-btn" (click)="getMedicalRequests()">
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table table-striped">
+          <tbody>
+            <tr *ngFor="let request of medicalRequests; let i=index">
+              <th scope="row">{{ calculate(i+1) }}</th>
+              <td>{{ request?._service?.title }}</td>
+              <td>{{ getDate(request?.date) }}</td>
+              <td>{{ request?._animal?.animalType || 'Nema karton' }}</td>
+              <td>{{ request?._animal?.animalBreed || 'Nema karton'}}</td>
+              <td *ngIf="request?._animal?._petOwner?._name; else noMedRecord">{{ request?._animal?._petOwner?.name }} {{ request?._animal?._petOwner?.surname }}</td>
+              <ng-template #noMedRecord>
+                <td>{{ request?._petOwner?.name }} {{ request?._petOwner?.surname }}</td>
+              </ng-template>
+              <td>
+                <button class="btn normal-btn" (click)="rejectRequest(request)">
+                  <fa-icon
+                    class="text-secondary"
+                    [icon]="faTrash"
+                  ></fa-icon>
+                </button>
+              </td>
+              <td>
+                <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                (click)="approveRequest(request)"
+                >Odobri zahtev</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row justify-content-center align-items-center w-100">
+          <div *ngIf="medicalRequests && medicalRequests[0]" class="pagination">
+            <pagination *ngIf="totalMedicalRequests > where.limit" [boundaryLinks]="true" [totalItems]="totalMedicalRequests"
+              [itemsPerPage]="where.limit" [maxSize]="7" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+              lastText="&raquo;" (pageChanged)="getMedicalRequests($event.page)"></pagination>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>

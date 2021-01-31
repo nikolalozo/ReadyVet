@@ -1,0 +1,42 @@
+.inside-caption {
+    color: #fff;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.servis{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.p{
+    border: 1px solid red; 
+    padding: 50px;
+    margin: 20px;
+    text-align: center; 
+    font-style: normal;
+    font-size: 19px;
+    color: #A2A2A2; 
+}
+
+.text{
+    font-style: normal;
+    font-weight: bold;
+    line-height: 100px;
+    text-align: center;
+    color: #1761A0;
+    font-size: 40px;
+    margin: 20px;
+}
+
+.parallax {
+    min-height: 350px; 
+    background-attachment: fixed;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../../../../assets/images/preg.jpg");
+}

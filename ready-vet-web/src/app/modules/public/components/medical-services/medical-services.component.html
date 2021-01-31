@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="parallax d-flex flex-column align-items-center justify-content-center">
+    <span class="inside-caption">Usluge</span>
+    <button type="button" *ngIf="isAdmin" class="btn btn-primary text-uppercase" (click)="createNewMedicalService()">Nova usluga</button>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 m-3 pl-5">
+      <div class="row">
+        <h1 class="text-primary">Kategorije</h1>
+      </div>
+      <div class="row mt-4">
+      </div>
+      <div class="row" *ngFor="let service of medicalServices">
+        <button
+        type="button"
+        class="btn btn-link"
+        (click)="selectService(service?._id)"
+        [ngClass]="{
+          'bg-primary text-decoration-none': service._id === selectedService
+        }">
+          <span
+          [ngClass]="{
+            'text-light text-decoration-none': service._id === selectedService
+          }">
+          {{ service?.title }}
+          </span>
+        </button>
+      </div>
+      <div class="row mt-2 pb-3 max-width-250 border-secondary justify-content-center align-items-center" *ngIf="!isAdmin">
+        <img class="img-fluid" src="../../../../../assets/images/usluge.jpg" alt="slika">
+        <h4 class="text-primary mt-2">Zakazite pregled</h4>
+        <p class="text-secondary mx-2">
+          Putem nase web stranice mozete brzo i jednostavno zakazati pregled kod nasih ljubaznih veterinara, koji ce vaseg kucnog ljubimca primiti u najkracem roku.
+        </p>
+        <button type="button" (click)="goToProfile()" class="btn btn-primary">Zakazite</button>
+      </div>
+    </div>
+    <div class="col-sm-8 m-2">
+      <div class="row m-3">
+        <div class="col">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4 class="text-primary">{{ getTitle() }}</h4>
+            </div>
+            <div *ngIf="isAdmin" class="col-sm-6">
+              <button type="button" class="btn btn-primary text-uppercase" (click)="editMedicalService()">Izmeni uslugu</button>
+              <button type="button" class="btn btn-outline-danger text-uppercase ml-3" (click)="deleteMedicalService()">Izbrisi uslugu</button>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <p class="text-secondary ml-3">{{ getDescription() }}</p>
+          </div>
+          <div class="row">
+            <span class="text-secondary ml-3">Minimalna cena za uslugu je:</span>
+            <p class="text-primary ml-1">{{ getMinPrice() }} dinara</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+export enum UserType {
+  VETERINARIAN = 'VETERINARIAN',
+  ADMIN = 'ADMIN',
+  ANIMAL_OWNER='ANIMAL_OWNER'
+}

@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h3 class="modal-title text-primary">{{ title }}</h3>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-sm-8 d-flex align-items-center justify-content-center">
+      <form autocomplete="off">
+        <div class="md-form mb-5">
+          <label class="text-secondary" for="email">Email Address</label>
+          <span class="text-danger ml-1">*</span>
+          <input id="email" name="email" class="form-control form-control-lg" type="email" [(ngModel)]="email"
+            placeholder="example@mail.com" autocomplete="off" email required />
+        </div>
+        <div class="md-form mb-4">
+          <label class="text-secondary" for="password">Šifra</label>
+          <span class="text-danger ml-1">*</span>
+          <div class="input-group mb-3">
+            <input [type]="!showPassword ? 'password' : 'text'" name="password" [(ngModel)]="password" id="password"
+              class="form-control form-control-lg" placeholder="Sifra" aria-label="PASSWORD" autocomplete="off"
+              required>
+            <div class="input-group-append">
+              <button class="show-hide-pass" type="button" (click)="toggleShowPassword()">
+                <fa-icon class="text-secondary" [icon]="faEye" *ngIf="!showPassword"></fa-icon>
+                <fa-icon class="text-secondary" [icon]="faEyeSlash" *ngIf="showPassword"></fa-icon>
+              </button>
+            </div>
+           
+          </div>
+          <div class="row d-flex flex-column justify-content-center align-items-center">
+            <span class="text-primary text-undelined">Nemate nalog?</span>
+            <button type="button" class="btn btn-link" (click)="goToRegistration()">Registrujte se</button>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+    
+    <div class="col-sm-4">
+
+      <img src="../../../../../assets/images/login-modal.png" alt="login-modal" class="img-fluid">
+
+    </div>
+  </div>
+</div>
+<div class="modal-footer d-flex justify-content-center">
+  <button type="button" class="btn {{ closeColor }}" (click)="decline()">{{ closeBtnName }}</button>
+  <button type="button" class="btn {{ confirmColor }}" (click)="login()">{{ confirmBtnName }}</button>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>

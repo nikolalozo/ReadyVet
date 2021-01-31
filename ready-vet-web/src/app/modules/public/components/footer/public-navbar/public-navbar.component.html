@@ -1,0 +1,39 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-fluid logo" [routerLink]="['./home-vet']"><img src="././assets/images/readyVetT.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" *ngIf="isPetOwner" [routerLink]="['./home-pet']">Pocetna</a>
+        <a class="nav-link text-uppercase" *ngIf="!isPetOwner" [routerLink]="['./home']">Pocetna</a>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./medical-services']">Usluge</a>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./veterinarians']">Tim</a>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./contact']">Kontakt</a>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" [routerLink]="['./medical-service-request']">Pregled</a>
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link text-uppercase" *ngIf="isPetOwner" [routerLink]="['./profile']">Profil</a>
+        <fa-icon *ngIf="newNotification" class="text-danger" [icon]="faBell"></fa-icon>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <button 
+      type="button" 
+      class="btn btn-primary ml-2 btn-sm text-uppercase"
+      (click)="isPetOwner ? logout() : goToLogin()">
+        {{ isPetOwner ? 'Odjava' : 'Prijava' }}
+      </button>
+    </span>
+  </div>
+</nav>

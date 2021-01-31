@@ -1,0 +1,37 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0px 10% 0px 10%;
+}
+
+.parallax {
+    min-height: 350px; 
+    background-attachment: fixed;
+    background-position: center bottom !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../../../../assets/images/usluge-page.jpg");
+}
+
+.inside-caption {
+    color: #fff;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-link {
+    color: #A2A2A2 !important;
+}
+
+.max-width-250 {
+    max-width: 250px;
+}

@@ -1,0 +1,32 @@
+.comment-container {
+  background-color: #EEE9E9;
+  margin: 50px auto;
+  padding: 20px;
+  color: #1761A0;
+  position:relative;
+  width: 45%;
+}
+.sb1:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #EEE9E9;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #EEE9E9;
+  border-bottom: 10px solid transparent;
+  right: -17px;
+  top: 0px;
+}
+.date-font {
+  color: #999999;
+  font-size: 10px;
+}
+.bold {
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+.italic {
+  font-style: italic;
+}

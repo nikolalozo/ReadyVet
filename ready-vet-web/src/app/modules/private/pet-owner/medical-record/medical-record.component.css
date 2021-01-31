@@ -1,0 +1,69 @@
+:host ::ng-deep .ngb-dp-months {
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+:host ::ng-deep .ngb-dp-month {
+  flex: 1 0 auto;
+}
+.width-50p {
+  width: 50%;
+}
+.width-60p{
+  width: 75%;
+}
+.width-6p {
+  width: 60%;
+}
+.width-40p{
+  width: 40%;
+}
+.width-100p{
+  width: 100%;
+}
+.width-90p{
+  width: 80%;
+}
+.background-img {
+  background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url("../../../../../assets/images/slusalice.JPG");
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+@media only screen and (min-width: 701px) {
+  .opacity {
+    background-color:rgba(240,240,240,0.6); 
+    min-width: 600px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .opacity {
+    background-color:rgba(240,240,240,0.6); 
+    max-width: 700px;
+  }
+}
+.metal {
+  background-color: #bdd4e7;
+  background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+  height: 50px;
+}
+.bg-metal {
+  border: 4px solid;
+  border-bottom: 10px solid;
+  border-color: #bdd4e7;
+  border-image-source: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+  border-image-slice: 1;
+  height: 40px;
+  width: 35%;
+}
+.text-primary {
+  color : #1761A0 !important;  
+  font-weight: 900;
+  font-size: 20px;
+}
+.font-size-22 {
+  font-size: 18px;
+  color : red !important;  
+  font-weight: bold;
+}

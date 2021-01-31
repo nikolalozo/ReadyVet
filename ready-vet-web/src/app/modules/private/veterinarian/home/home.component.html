@@ -1,0 +1,6 @@
+<div *ngIf="!isAdmin; else elseBlock">
+  <app-home-veterinarian></app-home-veterinarian>
+</div>
+<ng-template #elseBlock>
+  <app-home-admin></app-home-admin>
+</ng-template>

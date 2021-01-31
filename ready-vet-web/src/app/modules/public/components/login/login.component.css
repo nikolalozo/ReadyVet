@@ -1,0 +1,38 @@
+.naslov {
+  font-weight: bold;
+  font-size: 30px;
+} 
+.btn-link {
+  color: #A2A2A2 !important;
+}
+.active {
+  text-decoration: underline;
+  color: #1761A0 !important;
+}
+.pb-15 {
+  padding-bottom: 30px;
+}
+.h-90 {
+  height: 90%;
+}
+.nav-link {
+  color: #A2A2A2 !important;
+}
+.navbar-toggler:focus {
+  outline: 0;
+}
+.navbar-nav > .active {
+  color : #1761A0;  
+}
+.navbar-nav > .active a{
+color : #1761A0; 
+}
+.nav-item > a:hover {
+  color : #1761A0 !important;
+}
+.nav-item a.active {
+  color: #1761A0 !important;
+}
+.active-page {
+  color: #1761A0 !important;
+}

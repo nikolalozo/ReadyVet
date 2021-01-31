@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="parallax d-flex flex-column align-items-center justify-content-center">
+    <span class="inside-caption">Veterinari</span>
+  </div>
+  <div class="vetList">
+    <div class="vetProfile" *ngFor="let veterinarian of veterinarians">
+      <div class="vetPic">
+        <img class="pic" src="{{ generateUrl(veterinarian?.image) }}" alt="">
+      </div>
+      <div class="middle">
+        <div class="name">Ime i prezime: {{veterinarian?.name}} {{veterinarian?.surname}}</div>
+        <div class="specialty">Obrazovanje: {{ veterinarian?.education }}</div>
+      </div>
+      <div class="right">
+        <div class="stars">
+          <ngb-rating [(rate)]="veterinarian.averageMark" [max]="5" [readonly]="true" [starTemplate]="t">
+          </ngb-rating>
+        </div>
+        <div class="markS">
+          {{ veterinarian?.averageMark > 0 ? veterinarian?.averageMark : '0' }} / 5
+        </div>
+        <div class="profileBtn">
+          <button (click)="goToProfile(veterinarian?._id)" class="btn btn-primary">Profil</button>
+        </div>
+        <div class="deleteBtn" *ngIf="isAdmin">
+          <button  class="btn btn-outline-danger" (click)="openModal(veterinarian?._id)">Ukloni</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="pagination">
+        <pagination *ngIf="totalVeterinarians > where.limit" [boundaryLinks]="true" [totalItems]="totalVeterinarians"
+          [itemsPerPage]="where.limit" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+          lastText="&raquo;" (pageChanged)="getVeterinarians($event.page)"></pagination>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>

@@ -1,0 +1,156 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import "../node_modules/angular-notifier/styles.css";
+
+
+@font-face{
+  font-family: 'Roboto';
+  src: url("assets/fonts/Roboto-Regular.ttf") format("truetype")
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto';
+}
+
+.text-primary {
+  color: #1761A0 !important;
+}
+
+.auth-content-wrapper {
+  margin: 1rem auto;
+  max-width: 500px;
+}
+
+.hexagon {
+  position: relative;
+  width: 18px;
+  height: 10.39px;
+  margin: 5.20px 0;
+}
+
+.w-100 { width: 100%; }
+
+.show-hide-pass {
+  background-color: transparent;
+  border: 1px solid #ced4da;
+  border-left: none;
+  border-radius: 0.25rem;
+  color: #747D83;
+  padding: 0 12px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+div.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 30px;
+  color: #d3d3d3;
+}
+
+.full {
+color: #FAFF14;
+}
+
+.half {
+position: absolute;
+display: inline-block;
+overflow: hidden;
+color: #FAFF14;
+}
+
+.parallax {
+  min-height: 350px; 
+  background-attachment: fixed; 
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("./assets/images/usluge-page.jpg");
+}
+
+.btn-primary {
+  background-color: #1761A0 !important;
+  border: 0 !important;
+}
+
+.text-primary {
+  color : #1761A0 !important;  
+}
+
+.text-secondary {
+  color: #A2A2A2 !important;
+}
+
+.border-primary {
+  border:1px solid #1761A0 !important;  
+}
+
+.border-secondary {
+  border:1px solid #ACACAC !important;
+}
+
+.bg-primary {
+  background-color: #1761A0 !important;
+}
+
+.modal-header,
+.modal-body {
+  align-items: center;
+  justify-content: center;
+}
+.modal-header h3 {
+  text-align: center;
+  width: 100%;
+}
+.modal-body p {
+  text-align: center;
+  font-size: 1.2rem;
+}
+.avatar-wrapper {
+  width: 50px;
+  height: 50px;
+}
+.close-btn {
+  top: -10px;
+  right: -10px
+}
+.image-preview {
+  max-height: 100px;
+  width: auto;
+}
+.close-btn {
+  top: -10px;
+  right: -10px
+}
+.btn-outline-primary {
+  border: 1px solid #1761A0 !important; 
+}
+textarea {
+  resize: none;
+}
+.vh-90 {
+  height: 90vh;
+}
+.auth-bg-image {
+  background-image: linear-gradient(311.65deg, rgba(255,255,255,.6), rgba(255,255,255,.6)), url('./assets/images/petVet2.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.logo {
+  max-width: 140px;
+  max-height: 140px;
+}

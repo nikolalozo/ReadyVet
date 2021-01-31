@@ -1,0 +1,151 @@
+<div class="container-fluid">
+  <div class="row justify-content-center mt-2">
+    <div class="metal w-25">
+    </div>
+  </div>
+  <div class="background-img row justify-content-center">
+    <form #createMedicalRecord="ngForm" (ngSubmit)="create()" autocomplete="off">
+      <div class="row justify-content-center">
+        <div class="bg-metal">
+        </div>
+      </div>
+      <div class="opacity mb-5">
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              Tip pregleda
+              <small class="text-danger pl-1">*</small>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center">
+              <div class="row align-items-center justify-content-center width-60p">
+                <ng-select [items]="medicalServices" [(ngModel)]="data._service"
+                  [ngStyle]="{'display':'block', 'width':'75%', 'text-align': 'center'}" [hideSelected]="true"
+                  [multiple]="false" [clearable]=false [virtualScroll]=true (focus)=true required bindLabel="title"
+                  bindValue="_id" placeholder="Pregled" name="selected_service" #selected_service="ngModel">
+                </ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              Doktor
+              <small class="text-danger pl-1">*</small>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row d-flex flex-column">
+              <div class="row justify-content-center align-items-center">
+                <button type="button" class="btn btn-lg btn-primary width:60%" (click)="openModal()">
+                  Izaberite doktora
+                </button>
+              </div>
+              <div class="row justify-content-center align-items-center mt-2">
+                <span class="text-primary border-bottom">{{ getName() }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              Izaberite datum
+              <small class="text-danger pl-1">*</small>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center align-items-center">
+              <div class="form-group d-flex align-items-center justify-content-center">
+                <div class="input-group width-60p d-flex align-items-center justify-content-center">
+                  <input type="text" class="form-control" bsDatepicker [daysDisabled]="[0,6]" #dp="bsDatepicker"
+                    [bsConfig]="bsConfig" [bsValue]="data.date" (bsValueChange)="onValueChange($event)">
+                  <div class="input-group-btn">
+                    <button class="btn btn-primary" (click)="dp.show()" [attr.aria-expanded]="dp.isOpen" type="button">
+                      <fa-icon class="text-sec" [icon]="faCalendarAlt"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!hoursChosen" class="row justify-content-center align-items-center">
+              <span class="text-primary border-bottom">{{ getSelectedHour() }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-center"
+          *ngIf="availableHours && availableHours[0]; else elseBlock">
+          <div class="col-md-3 col-sm-6 m-4" *ngFor="let hour of availableHours">
+            <div class="row align-items-center justify-content-center">
+              <button type="button" class="rounded border-primary bg-light width-50p text-primary"
+                (click)="chooseHour(hour)">
+                {{hour}}:00
+              </button>
+            </div>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div class="row pt-5 justify-content-center align-items-center font-size-22">
+            <div class="row justify-content-center align-items-center width-60p">
+              <label>Nema slobodnih termina za danas</label>
+            </div>
+          </div>
+        </ng-template>
+        <div class="row pt-5">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              Prvi put pregled
+              <small class="text-danger pl-1">*</small>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center">
+              <div class="form-check mr-4">
+                <input class="form-check-input" type="radio" name="firstTime" [value]="true"
+                  [(ngModel)]="withoutMedRec">
+                <label class="form-check-label">
+                  Da
+                </label>
+              </div>
+              <div class="form-check ml-4">
+                <input class="form-check-input" type="radio" name="firstTime" [value]="false"
+                  [(ngModel)]="withoutMedRec">
+                <label class="form-check-label">
+                  Ne
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5" *ngIf="!withoutMedRec">
+          <div class="col-md-6 col-sm-6">
+            <div class="row align-items-center justify-content-center text-primary">
+              Životinja
+              <small class="text-danger pl-1">*</small>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="row justify-content-center">
+              <button type="button" class="btn btn-lg btn-primary width:60%" (click)="openAnimalModal()">
+                Izaberite životinju
+              </button>
+            </div>
+            <div class="row justify-content-center align-items-center mt-2">
+              <span class="text-primary border-bottom">{{ getAnimal() }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center pt-5">
+          <button type="submit" class="btn btn-lg btn-primary mb-5 w-50"
+            [disabled]="!createMedicalRecord.form.valid || checkIfDataIsEmpty() || hoursChosen">
+            Kreiraj
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
